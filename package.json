@@ -1,0 +1,16 @@
+{
+  "name": "enggrind-tma",
+  "private": true,
+  "workspaces": ["web"],
+  "scripts": {
+    "dev": "concurrently -k -n web,api -c cyan,green \"npm:dev:web\" \"npm:dev:api\"",
+    "dev:web": "npm run dev -w web",
+    "dev:api": "python -m uvicorn backend.app.main:app --reload --port 3001",
+    "bot": "python -m backend.setup && python -m backend.app.bot",
+    "setup": "python -m backend.setup",
+    "build": "npm run build -w web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
